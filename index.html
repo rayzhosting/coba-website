@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murid Create Web - Jasa Hosting & Pembuatan Website Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .services {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-content p {
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .features {
+            margin-bottom: 20px;
+        }
+        
+        .features li {
+            list-style: none;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+        
+        .pricing {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .pricing-card .price {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-card .price span {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: normal;
+        }
+        
+        .pricing-features {
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            list-style: none;
+            margin-bottom: 10px;
+            color: #64748b;
+        }
+        
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .contact-info h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .contact-info p {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .contact-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .contact-text p, .contact-text a {
+            color: #64748b;
+            text-decoration: none;
+        }
+        
+        .contact-text a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-col p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Murid<span>CreateWeb</span></a>
+                <div class="nav-links">
+                    <a href="#services">Layanan</a>
+                    <a href="#pricing">Harga</a>
+                    <a href="#contact">Kontak</a>
+                </div>
+                <a href="#contact" class="cta-button">Pesan Sekarang</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Solusi Hosting & Pembuatan Website Profesional</h1>
+            <p>Kami menyediakan layanan hosting berkualitas tinggi dan jasa pembuatan website cepat dengan harga terjangkau. Mulai bisnis online Anda bersama kami!</p>
+            <a href="#pricing" class="cta-button">Lihat Paket</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Layanan Kami</h2>
+                <p>Kami menawarkan berbagai solusi untuk kebutuhan online bisnis Anda</p>
+            </div>
+            <div class="service-cards">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Create Web dengan Bot">
+                    <div class="service-content">
+                        <h3>Create Web Pakai Bot</h3>
+                        <p>Pembuatan website otomatis menggunakan teknologi bot canggih untuk hasil cepat dan profesional.</p>
+                        <div class="features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Full ajarannya</li>
+                                <li><i class="fas fa-check"></i> Bahan dan tutorial lengkap</li>
+                                <li><i class="fas fa-check"></i> Bisa open jasa pembuatan script/web</li>
+                            </ul>
+                        </div>
+                        <div class="price">Rp 40.000</div>
+                        <a href="#contact" class="cta-button">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Jasa Pembuatan Web">
+                    <div class="service-content">
+                        <h3>Jasa Pembuatan Web</h3>
+                        <p>Kami buatkan website sesuai kebutuhan Anda dengan proses cepat dan hasil memuaskan.</p>
+                        <div class="features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Bebas request web apapun</li>
+                                <li><i class="fas fa-check"></i> Payment via transfer bank/digital</li>
+                                <li><i class="fas fa-check"></i> Pengerjaan 2-5 menit setelah pembayaran</li>
+                            </ul>
+                        </div>
+                        <div class="price">Rp 5.000 - 10.000</div>
+                        <a href="#contact" class="cta-button">Pesan Sekarang</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Hosting">
+                    <div class="service-content">
+                        <h3>Web Hosting</h3>
+                        <p>Hosting berkualitas tinggi dengan uptime 99.9% dan kecepatan optimal untuk website Anda.</p>
+                        <div class="features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> SSD Super Cepat</li>
+                                <li><i class="fas fa-check"></i> Free SSL Certificate</li>
+                                <li><i class="fas fa-check"></i> 24/7 Customer Support</li>
+                                <li><i class="fas fa-check"></i> Backup Harian</li>
+                            </ul>
+                        </div>
+                        <div class="price">Mulai Rp 20.000/bulan</div>
+                        <a href="#contact" class="cta-button">Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Paket Harga</h2>
+                <p>Pilih paket yang sesuai dengan kebutuhan bisnis online Anda</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">Rp 5.000 <span>/project</span></div>
+                    <ul class="pricing-features">
+                        <li>Website Sederhana</li>
+                        <li>1 Halaman Utama</li>
+                        <li>Template Basic</li>
+                        <li>Pengerjaan 5 Menit</li>
+                        <li>Revisi 1x</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Pilih Paket</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">POPULAR</div>
+                    <h3>Standard</h3>
+                    <div class="price">Rp 8.000 <span>/project</span></div>
+                    <ul class="pricing-features">
+                        <li>Website Profesional</li>
+                        <li>3-5 Halaman</li>
+                        <li>Template Premium</li>
+                        <li>Pengerjaan 3 Menit</li>
+                        <li>Revisi 3x</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Pilih Paket</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <div class="price">Rp 10.000 <span>/project</span></div>
+                    <ul class="pricing-features">
+                        <li>Website Custom</li>
+                        <li>Unlimited Halaman</li>
+                        <li>Design Eksklusif</li>
+                        <li>Pengerjaan 2 Menit</li>
+                        <li>Revisi Unlimited</li>
+                        <li>Fully Responsive</li>
+                        <li>Optimasi SEO</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Pilih Paket</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+                <p>Silakan hubungi kami untuk informasi lebih lanjut atau pemesanan layanan</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Mari Bekerja Sama</h3>
+                    <p>Kami siap membantu mewujudkan website impian Anda. Hubungi kami melalui kontak berikut atau isi form pesan.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Telepon/WhatsApp</h4>
+                                <a href="https://wa.me/6285752502894">+62 857-5250-2894</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <a href="mailto:contact@muridcreateweb.com">contact@muridcreateweb.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Jam Operasional</h4>
+                                <p>Senin - Minggu: 08.00 - 22.00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor WhatsApp</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Layanan yang Diminati</label>
+                            <select id="service" name="service" required>
+                                <option value="">Pilih Layanan</option>
+                                <option value="create-web-bot">Create Web Pakai Bot</option>
+                                <option value="jasa-pembuatan-web">Jasa Pembuatan Web</option>
+                                <option value="web-hosting">Web Hosting</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan/Kebutuhan Anda</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>MuridCreateWeb</h4>
+                    <p>Solusi profesional untuk kebutuhan hosting dan pembuatan website bisnis Anda dengan harga terjangkau dan kualitas terbaik.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Layanan</h4>
+                    <div class="footer-links">
+                        <a href="#">Create Web Pakai Bot</a>
+                        <a href="#">Jasa Pembuatan Web</a>
+                        <a href="#">Web Hosting</a>
+                        <a href="#">Domain Registration</a>
+                        <a href="#">Maintenance Website</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Perusahaan</h4>
+                    <div class="footer-links">
+                        <a href="#">Tentang Kami</a>
+                        <a href="#">Portfolio</a>
+                        <a href="#">Testimoni</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Karir</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Bantuan</h4>
+                    <div class="footer-links">
+                        <a href="#">FAQ</a>
+                        <a href="#">Syarat & Ketentuan</a>
+                        <a href="#">Kebijakan Privasi</a>
+                        <a href="#">Panduan Pembayaran</a>
+                        <a href="#">Hubungi Kami</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MuridCreateWeb. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
